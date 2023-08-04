@@ -19,10 +19,11 @@ def s(n, p, q):
     p = int(p)
     q = int(q)
     n = n % (q - 1)
-    S = 0
+    S = int(0)
     while n:
         S = S + n % p
-        n = n / p
+        n = n // p # Integer (floor) division
+        print(n)
     return S
 
 def calc_exceptional_poly(p, r, coeffs, powers):
@@ -75,7 +76,7 @@ def count_exceptional_alpha(p, r, powers):
     for alpha in alphas:
         is_root_of_unity = True
         for mu in Integers(m).list_of_elements_of_multiplicative_group():
-            S = 0
+            S = Integer(0)
             for i in range(len(alpha[1])):
                 j_num = alpha[1][i] * m
                 S += s((q - 1) * mu * j_num / m, p, q)
