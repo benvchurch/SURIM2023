@@ -23,7 +23,6 @@ def s(n, p, q):
     while n:
         S = S + n % p
         n = n // p # Integer (floor) division
-        print(n)
     return S
 
 def calc_exceptional_poly(p, r, coeffs, powers):
@@ -57,8 +56,8 @@ def find_exceptional_alpha(p, r, coeffs, powers):
             S = 0
             for i in range(len(alpha[1])):
                 j_num = alpha[1][i] * m
-                S += s((q - 1) * mu * j_num / m, p, q)
-            if S != (p-1) * f * (r + 1)/2:
+                S += s((q - 1) * mu * j_num // m, p, q)
+            if S != (p-1) * f * Integer(r + 1) / Integer(2):
                 exceptional_alpha.append(alpha)
                 break
         #print alpha_num, S, (p-1)*f * (r + 1)/2
@@ -80,7 +79,7 @@ def count_exceptional_alpha(p, r, powers):
             for i in range(len(alpha[1])):
                 j_num = alpha[1][i] * m
                 S += s((q - 1) * mu * j_num / m, p, q)
-            if S != (p-1) * f * (r + 1)/2:
+            if S != (p-1) * f * Integer(r + 1) / Integer(2):
                 is_root_of_unity = False
                 break
         if is_root_of_unity:
@@ -101,8 +100,8 @@ def exist_exceptional_alpha(p, r, powers):
         S = 0
         for i in range(len(alpha[1])):
             j_num = alpha[1][i] * m
-            S += s((q - 1) * j_num / m, p, q)
-        if S != (p-1) * f * (r + 1)/2:
+            S += s((q - 1) * j_num // m, p, q)
+        if S != (p-1) * f * Integer(r + 1) / Integer(2):
             return True
     return False
 
@@ -118,7 +117,7 @@ def compute_newton_polygon(r, p, powers):
         S = 0
         for a in alpha[1]:
             j_num = a * m
-            S += s((q - 1) * j_num / m, p, q)
+            S += s((q - 1) * j_num // m, p, q)
         if S not in D:
             D[S] = alpha[0]
         else:
